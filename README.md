@@ -4,6 +4,10 @@
 
 a minimal prototype of figma slides' tone adjuster, with local-storage persistence and in-memory cache
 
+### preview
+
+![tona_preview](./public/preview.png)
+
 📚 stack
 
 - [next.js (typescript)](https://nextjs.org/)
