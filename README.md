@@ -1,6 +1,6 @@
 ### tona → tone + a
 
-a minimal prototype of figma slides' tone adjuster
+a minimal prototype of figma slides' tone adjuster, with local-storage persistence.
 
 📚 stack
 
@@ -15,8 +15,8 @@ a minimal prototype of figma slides' tone adjuster
 ```bash
 $ git clone https://github.com/SanyamPunia/tona.git
 $ cd tona
-$ yarn
-$ yarn dev
+$ pnpm install
+$ pnpm dev
 ```
 
 make sure to add mistral's ai api key to your `.env` file
