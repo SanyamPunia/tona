@@ -150,11 +150,29 @@ export default function HomeClient() {
                 </button>
               ))}
             </div>
-            <div>
+            <div className="flex gap-2 mt-2">
               <button
-                className="mt-2 px-3 py-2 cursor-pointer text-xs uppercase border border-border hover:bg-zinc-900 hover:text-zinc-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="flex-1 px-3 py-2 cursor-pointer text-xs uppercase border border-border hover:bg-zinc-900 hover:text-zinc-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 onClick={() => handlePlaygroundChange({ x: 0, y: 0 })}
-                disabled={isLoading || !toneHistory.originalText.trim()}
+                disabled={
+                  isLoading ||
+                  !toneHistory.originalText.trim() ||
+                  (playgroundPosition.x === 0 && playgroundPosition.y === 0)
+                }
+              >
+                Center
+              </button>
+              <button
+                className="flex-1 px-3 py-2 cursor-pointer text-xs uppercase border border-border hover:bg-zinc-900 hover:text-zinc-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                onClick={() => {
+                  toneHistory.setOriginalText(toneHistory.originalText);
+                  setPlaygroundPosition({ x: 0, y: 0 });
+                  toast.success("Reset to original text");
+                }}
+                disabled={
+                  isLoading ||
+                  toneHistory.currentText === toneHistory.originalText
+                }
               >
                 Reset
               </button>

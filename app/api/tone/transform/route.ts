@@ -89,26 +89,28 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const prompt = `You are a professional text transformation assistant. Your task is to rephrase the given text according to specific tone parameters.
+    const systemPrompt = `You are a text transformation engine. You MUST output ONLY the rephrased text with NO additional commentary, explanations, or formatting whatsoever.`;
 
-TONE PARAMETERS:
-- Formality: ${tone.formality}
-- Emotional tone: ${tone.emotion}
-- Style: ${tone.style}
+    const userPrompt = `Transform this text using these parameters:
 
-ORIGINAL TEXT:
+Formality: ${tone.formality}
+Emotion: ${tone.emotion}
+Style: ${tone.style}
+
+Text to transform:
 ${text}
 
-STRICT RULES:
-1. Return ONLY the rephrased text as a plain paragraph
-2. Do NOT include any explanations, commentary, or notes
-3. Do NOT add quotes, markdown formatting, or special characters
-4. Do NOT start with phrases like "Here is..." or "The transformed text is..."
-5. If the input is nonsensical, gibberish, or inappropriate, respond with: "Unable to rephrase: Invalid or inappropriate content provided."
-6. Preserve the core meaning while adapting the tone
-7. Keep the response concise and natural
+CRITICAL INSTRUCTIONS:
+- Output the rephrased text IMMEDIATELY without any prefix
+- DO NOT write "Here is", "The text", "Transformed:", or ANY introductory phrase
+- DO NOT use quotes, asterisks, or markdown
+- DO NOT explain what you did
+- DO NOT add any commentary before or after
+- Just output the rephrased paragraph directly
 
-OUTPUT (plain text only):`;
+If the input is invalid/inappropriate, output exactly: Unable to rephrase invalid content
+
+Begin output now:`;
 
     const response = await fetch(MISTRAL_API_URL, {
       method: "POST",
@@ -118,8 +120,12 @@ OUTPUT (plain text only):`;
       },
       body: JSON.stringify({
         model: "mistral-small-latest",
-        messages: [{ role: "user", content: prompt }],
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: userPrompt },
+        ],
         max_tokens: 1024,
+        temperature: 0.7,
       }),
     });
 
