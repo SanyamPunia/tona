@@ -3,7 +3,6 @@ import { type NextRequest, NextResponse } from "next/server";
 const MISTRAL_API_KEY = process.env.MISTRAL_API_KEY;
 const MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions";
 
-// Simple in-memory cache with TTL
 const cache = new Map<string, { data: string; timestamp: number }>();
 const CACHE_TTL = 3600000; // 1 hour
 
