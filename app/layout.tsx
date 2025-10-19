@@ -8,8 +8,8 @@ import "./globals.css";
 const spaceMono = Space_Mono({ subsets: ["latin"], weight: ["400", "700"] });
 
 export const metadata: Metadata = {
-  title: "Fiddle Code",
-  description: "Fiddle Code",
+  title: "tona",
+  description: "tone + a",
 };
 
 export default function RootLayout({
