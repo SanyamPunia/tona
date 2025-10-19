@@ -48,7 +48,7 @@ export default function TextEditor({
           onKeyDown={handleKeyDown}
           disabled={isLoading}
           placeholder="Enter your text here..."
-          className="w-full h-[400px] uppercase p-3 text-sm border border-border bg-background text-zinc-200 placeholder:text-muted-foreground focus:outline-none focus:ring-0 transition-all focus:ring-border disabled:opacity-50 resize-none caret-caret"
+          className="w-full h-[400px] uppercase p-3 text-sm border border-border bg-background text-zinc-200 placeholder:text-muted-foreground focus:outline-none focus:ring-1 transition-all focus:ring-border disabled:opacity-50 resize-none caret-caret"
         />
 
         <AnimatePresence>
